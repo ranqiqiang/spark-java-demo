@@ -15,11 +15,11 @@ import java.util.List;
 /**
  * Created by qqr on 16/12/30.
  */
-public class CombineByKeyDemo {
+public class CombineByKeyDemo extends BaseDemo {
     public static void main(String[] args) {
         SparkSession session = SparkSession.builder()
                 .master("local[*]")
-                .appName("jdbcDemo")
+                .appName("demo")
                 .getOrCreate();
         JavaSparkContext sc = new JavaSparkContext(session.sparkContext());
 
@@ -58,7 +58,7 @@ public class CombineByKeyDemo {
                         return v1;
                     }
                 },
-                //
+                // 合并
                 new Function2<List<Integer>, List<Integer>, List<Integer>>() {
                     public List<Integer> call(List<Integer> v1, List<Integer> v2) throws Exception {
                         v1.addAll(v2);
@@ -75,7 +75,4 @@ public class CombineByKeyDemo {
 
     }
 
-    private static Tuple2<Integer,Integer> newTuple2(Integer a,Integer b){
-        return new Tuple2<Integer, Integer>(a,b);
-    }
 }
