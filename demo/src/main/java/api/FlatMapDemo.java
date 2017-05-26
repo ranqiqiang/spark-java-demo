@@ -32,7 +32,7 @@ public class FlatMapDemo extends BaseDemo {
         final JavaRDD<Integer> map = data.flatMap(new FlatMapFunction<Tuple2<Integer,Integer>, Integer>() {
 
             public Iterator<Integer> call(Tuple2<Integer, Integer> it) throws Exception {
-                // 直接返回列表
+                // 直接返回集合，可以生成多了 对象，比如1，2，3，4，5 一起返回
                 return Arrays.asList(it._1).iterator();
             }
         });
